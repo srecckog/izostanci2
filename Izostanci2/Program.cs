@@ -193,7 +193,7 @@ namespace Izostanci2
 
             DateTime jucer1 = DateTime.Now.AddDays(-1);
             //////////////////////////////////////////////////////////////
-           jucer1 = new DateTime(2019,  9, 22 , 12, 12,0);
+           //jucer1 = new DateTime(2019,  9, 21 , 12, 12,0);
             //////////////////////////////////////////////////////////////
 
             int dayofweek1 = (int)jucer1.DayOfWeek;
