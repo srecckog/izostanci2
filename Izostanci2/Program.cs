@@ -18,7 +18,7 @@ namespace Izostanci2
         {
 
             //Console.WriteLine("11111111111111111111111" + DateTime.Now);
-            //Console.ReadKey();
+            //Console.ReadKey();1111111111111111111
 
             string connectionString = @"Data Source=192.168.0.5;Initial Catalog=FeroApp;User ID=sa;Password=AdminFX9.";
             string connectionStringRFIND = @"Data Source=192.168.0.3;Initial Catalog=RFIND;User ID=sa;Password=AdminFX9.";
