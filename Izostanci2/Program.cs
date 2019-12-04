@@ -21,7 +21,7 @@ namespace Izostanci2
             //Console.ReadKey();1111111111111111111
 
             string connectionString = @"Data Source=192.168.0.5;Initial Catalog=FeroApp;User ID=sa;Password=AdminFX9.";
-            string connectionStringRFIND = @"Data Source=192.168.0.3;Initial Catalog=RFIND;User ID=sa;Password=AdminFX9.";
+            string connectionStringFX_RFIND = @"Data Source=192.168.0.3;Initial Catalog=FX_RFIND;User ID=sa;Password=AdminFX9.";
 
             string c7 = "", c8 = "", c9 = "", c10 = "", c11 = "", c12 = "", c13 = "", c14 = "", c15 = "0", c16 = "", c17 = "", c19 = "", c21 = ""; // 
             string c7do = "", c8do = "", c9do = "", c10do = "", c11do = "", c12do = "", c13do = "", c14do = "", c15do = "", c16do = "", c17do = "", c19do = "", c21do = ""; // 
@@ -34,7 +34,7 @@ namespace Izostanci2
 
 
             string baza1 = "fxsap.dbo.plansatirada";
-            //baza1 = "rfind.dbo.plansatirada2";
+            //baza1 = "FX_RFIND.dbo.plansatirada2";
             int test = 0;   // 10-test, 0 - live
 
             // Process.Start("C:\\brisi\\_raspored djelatnika21.xlsm");
@@ -152,7 +152,7 @@ namespace Izostanci2
             string smjenanaziv = "", smj = "";
             DateTime datrep = d3; ;
 
-            //            sql1 = "rfind.dbo.izostanci '" + dat1 + "',1";
+            //            sql1 = "FX_RFIND.dbo.izostanci '" + dat1 + "',1";
 
             string fileNameIzo = @"l:\izvještaji\dsr\izostanci_" + nuland + d2.Day.ToString() + nulanm + d2.Month.ToString() + d2.Year.ToString() + "_" + smj + ".xlsm";
             string fileNameNepl = @"l:\izvještaji\dsr\izostanci2_" + nuland + d2.Day.ToString() + nulanm + d2.Month.ToString() + d2.Year.ToString() + "_" + smj + ".xlsm";
@@ -193,7 +193,7 @@ namespace Izostanci2
 
             DateTime jucer1 = DateTime.Now.AddDays(-1);
             //////////////////////////////////////////////////////////////
-           //jucer1 = new DateTime(2019,  9, 21 , 12, 12,0);
+           //jucer1 = new DateTime(2019,  10, 25 , 12, 12,0);
             //////////////////////////////////////////////////////////////
 
             int dayofweek1 = (int)jucer1.DayOfWeek;
@@ -227,27 +227,27 @@ namespace Izostanci2
                 // 1.korak, mt=700,716 and unešeno od štelera
 
                 //            sql1 = "select * from(select x1.*, p.dosao, p.otisao, p.Ukupno_minuta, p.RadnoMjesto, case when dosao is null then 'Nije zaplaniran' when year(dosao) = 1900 then 'Nije se prijavio' when year(dosao) = 1900 then 'Nije se prijavio' end napomena, case when x1.smjena = 3 and x1.satiradaradnika >= 8 then '1n' when x1.smjena = 2 and x1.satiradaradnika >= 8 then '1p' when x1.smjena = 1 and x1.satiradaradnika >= 8 then '1j' when x1.smjena = 3 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'n') when x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0  then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'p') when x1.satiradaradnika = 0 then '0e' when x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'j') end oznaka from( select e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradaradnika) satiradaradnika, id FROM feroapp.dbo.EvidNormiRada('" + djucer+ "', '" + djucer +"') e " +
-                //                   "inner join rfind.dbo.radnici_ r on r.id_radnika = e.id_radnika group by e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id ) x1 left join rfind.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena ) x2  order by x2.radnik,x2.smjena";
+                //                   "inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = e.id_radnika group by e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id ) x1 left join FX_RFIND.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena ) x2  order by x2.radnik,x2.smjena";
 
                 //sql1 = "select * from(select x1.*, p.dosao, p.otisao, p.Ukupno_minuta, p.RadnoMjesto, case when dosao is null then 'Nije zaplaniran' when year(dosao) = 1900 then 'Nije se prijavio' when year(dosao) = 1900 then 'Nije se prijavio' end napomena, case when x1.smjena = 3 and x1.satiradaradnika >= 8 then '1n' when x1.smjena = 2 and x1.satiradaradnika >= 8 then '1p' when x1.smjena = 1 and x1.satiradaradnika >= 8 then '1j' when x1.smjena = 3 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'n') when x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0  then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'p') when x1.satiradaradnika = 0 then '0e' when x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'j') end oznaka from( select e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradaradnika) satiradaradnika, id, PomocniRadnik FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e " +
-                //       "inner join rfind.dbo.radnici_ r on r.id_radnika = e.id_radnika group by e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id, PomocniRadnik union all select e.pomocniradnik radnik, e.id_radnika2, e.vrsta, e.firma, e.datum, e.hala, e.smjena, sum(e.SatiRadaPomocnogRadnika) satiradaradnika, id, PomocniRadnik FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e inner join rfind.dbo.radnici_ r on r.id_radnika = e.id_radnika2 where pomocniradnik is not null and  pomocniradnik != '' group by e.radnik, e.id_radnika2, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id, PomocniRadnik ) x1   left join rfind.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 order by x2.radnik,x2.smjena ";
+                //       "inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = e.id_radnika group by e.radnik, e.id_radnika, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id, PomocniRadnik union all select e.pomocniradnik radnik, e.id_radnika2, e.vrsta, e.firma, e.datum, e.hala, e.smjena, sum(e.SatiRadaPomocnogRadnika) satiradaradnika, id, PomocniRadnik FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = e.id_radnika2 where pomocniradnik is not null and  pomocniradnik != '' group by e.radnik, e.id_radnika2, e.vrsta, e.firma, e.datum, e.hala, e.smjena, id, PomocniRadnik ) x1   left join FX_RFIND.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 order by x2.radnik,x2.smjena ";
 
                 //                sql1 = "select r.prezime,r.ime,x2.* from(select x1.*, p.dosao, p.otisao, p.Ukupno_minuta, p.RadnoMjesto, case when dosao is null then 'Nije zaplaniran' when year(dosao) = 1900 then 'Nije se prijavio' when year(dosao) = 1900 then 'Nije se prijavio' end napomena, case when x1.smjena = 3 and x1.satiradaradnika >= 8 then '1n' when x1.smjena = 2 and x1.satiradaradnika >= 8 then '1p' when x1.smjena = 1 and x1.satiradaradnika >= 8 then '1j' when x1.smjena = 3 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'n') when x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0  then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'p') when x1.satiradaradnika = 0 then '0e' when x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'j') end oznaka from(select x11.* from(select x11.*, id from(select e.id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradaradnika) satiradaradnika FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e " +
-                //                       "group by e.id_radnika, e.firma, e.datum, e.hala, e.smjena ) x11  inner join rfind.dbo.radnici_ r on r.id_radnika = x11.id_radnika  ) x11  union all select x12.* from( select x12.*, id from( select e.id_radnika2 id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradapomocnogradnika) satiradaradnika  FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e  where pomocniradnik is not null and  pomocniradnik != ''  group by e.id_radnika2, e.firma, e.datum, e.hala, e.smjena  ) x12  inner join rfind.dbo.radnici_ r on r.id_radnika = x12.id_radnika  ) x12 ) x1 left join rfind.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 left join rfind.dbo.radnici_ r on r.id = x2.id order by x2.id_radnika,x2.smjena";
+                //                       "group by e.id_radnika, e.firma, e.datum, e.hala, e.smjena ) x11  inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = x11.id_radnika  ) x11  union all select x12.* from( select x12.*, id from( select e.id_radnika2 id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradapomocnogradnika) satiradaradnika  FROM feroapp.dbo.EvidNormiRada('" + djucer + "', '" + djucer + "') e  where pomocniradnik is not null and  pomocniradnik != ''  group by e.id_radnika2, e.firma, e.datum, e.hala, e.smjena  ) x12  inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = x12.id_radnika  ) x12 ) x1 left join FX_RFIND.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 left join FX_RFIND.dbo.radnici_ r on r.id = x2.id order by x2.id_radnika,x2.smjena";
 
                 //sql1 = "select r.prezime,r.ime,x2.* from(select x1.*, p.dosao, p.otisao, p.Ukupno_minuta, p.RadnoMjesto,case when dosao is null then 'Nije zaplaniran' when year(dosao) = 1900 then 'Nije se prijavio' when year(dosao) = 1900 then 'Nije se prijavio' end napomena, " +
                 //       "case when DATEPART(WEEKDAY, '"+djucer+"') != 6 and  x1.smjena = 3 and x1.satiradaradnika >= 8 then '1n' when DATEPART(WEEKDAY, '"+djucer+"') not in (6) and x1.smjena = 2 and x1.satiradaradnika >= 8 then '1p' when DATEPART(WEEKDAY, '"+djucer+"') not in (6) and x1.smjena = 1 and x1.satiradaradnika >= 8 then '1j' when DATEPART(WEEKDAY, '"+djucer+"') not in (6) and x1.smjena = 3 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'n') when DATEPART(WEEKDAY, '"+djucer+"') not in (6) and x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'p') when DATEPART(WEEKDAY, '"+djucer+"') not in (6) and x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((7.0 - x1.satiradaradnika) as varchar(12)) + 'j') when DATEPART(WEEKDAY, '"+djucer+"') = 6 and  x1.smjena = 2 and x1.satiradaradnika >= 8 then '3p' " +
-                //       " when DATEPART(WEEKDAY, '"+djucer+"') = 6 and  x1.smjena = 1 and x1.satiradaradnika >= 8 then '3j' when DATEPART(WEEKDAY, '"+djucer+"') = 6 and  x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((5.0 - x1.satiradaradnika) as varchar(12)) + 'p') when DATEPART(WEEKDAY, '"+djucer+ "') = 6 and  x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((5.0 - x1.satiradaradnika) as varchar(12)) + 'j') when x1.satiradaradnika = 0 and ukupno_minuta=0 then '0e' when x1.satiradaradnika = 0 and ukupno_minuta>59 then '0X' end oznaka from( select x11.* from(  select x11.*, id from( select e.id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradaradnika) satiradaradnika FROM feroapp.dbo.EvidNormiRada('" + djucer+"', '"+djucer+"') e group by e.id_radnika, e.firma, e.datum, e.hala, e.smjena ) x11  inner join rfind.dbo.radnici_ r on r.id_radnika = x11.id_radnika ) x11 union all  select x12.* from( select x12.*, id from(          select e.id_radnika2 id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.SatiRadaPomocnogRadnika) satiradaradnika  FROM feroapp.dbo.EvidNormiRada('"+djucer+"', '"+djucer+"') e where pomocniradnik is not null and  pomocniradnik != '' group by e.id_radnika2, e.firma, e.datum, e.hala, e.smjena ) x12 inner join rfind.dbo.radnici_ r on r.id_radnika = x12.id_radnika " +
-                //       " ) x12 ) x1 left join rfind.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 inner join rfind.dbo.radnici_ r on r.id_radnika = x2.id_radnika  order by x2.id_radnika,x2.smjena";
+                //       " when DATEPART(WEEKDAY, '"+djucer+"') = 6 and  x1.smjena = 1 and x1.satiradaradnika >= 8 then '3j' when DATEPART(WEEKDAY, '"+djucer+"') = 6 and  x1.smjena = 2 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((5.0 - x1.satiradaradnika) as varchar(12)) + 'p') when DATEPART(WEEKDAY, '"+djucer+ "') = 6 and  x1.smjena = 1 and x1.satiradaradnika < 8 and x1.satiradaradnika > 0 then('-' + cast((5.0 - x1.satiradaradnika) as varchar(12)) + 'j') when x1.satiradaradnika = 0 and ukupno_minuta=0 then '0e' when x1.satiradaradnika = 0 and ukupno_minuta>59 then '0X' end oznaka from( select x11.* from(  select x11.*, id from( select e.id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.satiradaradnika) satiradaradnika FROM feroapp.dbo.EvidNormiRada('" + djucer+"', '"+djucer+"') e group by e.id_radnika, e.firma, e.datum, e.hala, e.smjena ) x11  inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = x11.id_radnika ) x11 union all  select x12.* from( select x12.*, id from(          select e.id_radnika2 id_radnika, e.firma, e.datum, e.hala, e.smjena, sum(e.SatiRadaPomocnogRadnika) satiradaradnika  FROM feroapp.dbo.EvidNormiRada('"+djucer+"', '"+djucer+"') e where pomocniradnik is not null and  pomocniradnik != '' group by e.id_radnika2, e.firma, e.datum, e.hala, e.smjena ) x12 inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = x12.id_radnika " +
+                //       " ) x12 ) x1 left join FX_RFIND.dbo.pregledvremena p on p.IDRadnika = x1.id and p.datum = x1.datum and x1.smjena = p.smjena  ) x2 inner join FX_RFIND.dbo.radnici_ r on r.id_radnika = x2.id_radnika  order by x2.id_radnika,x2.smjena";
 
                 string danxx = "Dan" + dj;
                 int praznik = 0;
                 worksheetPlansatirada.Rows.Cells[i, 6].value = danxx;
 
                 // 0. korak praznici
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))  // praznici
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))  // praznici
                 {
-                    sql1 = "update " + baza1 + " set " + danxx + "='0y' where '" + djucer + "' in ( select datum from rfind.dbo.praznici) and " + danxx + " is null and mjesec=" + mj0 + " and godina=" + god1;    //   feroapp.dbo.evidnormirada( dat1 , dat2 )
+                    sql1 = "update " + baza1 + " set " + danxx + "='0y' where '" + djucer + "' in ( select datum from FX_RFIND.dbo.praznici) and " + danxx + " is null and mjesec=" + mj0 + " and godina=" + god1;    //   feroapp.dbo.evidnormirada( dat1 , dat2 )
                     cn.Open();
                     SqlCommand sqlCommand = new SqlCommand(sql1, cn);
                     SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -260,10 +260,10 @@ namespace Izostanci2
 
                 //1.korak evidenormirada, upis od strane štelera
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
-                    sql1 = "rfind.dbo.satniceoznake1 '" + djucer + "'";    //   feroapp.dbo.evidnormirada( dat1 , dat2 )
+                    sql1 = "FX_RFIND.dbo.satniceoznake1 '" + djucer + "'";    //   feroapp.dbo.evidnormirada( dat1 , dat2 )
                     cn.Open();
                     SqlCommand sqlCommand = new SqlCommand(sql1, cn);
 
@@ -339,7 +339,7 @@ namespace Izostanci2
 
                             sql2 = " select * from " + baza1 + " where mjesec=" + mjes1 + " and godina=" + god1 + " and radnikid= " + id1 + " and firma=" + firma1;
 
-                            using (SqlConnection cn2 = new SqlConnection(connectionStringRFIND))
+                            using (SqlConnection cn2 = new SqlConnection(connectionStringFX_RFIND))
                             {
 
                                 cn2.Open();
@@ -353,7 +353,7 @@ namespace Izostanci2
                                     if ((reader2[danxx] == DBNull.Value) || (reader2[danxx].ToString().TrimEnd() == ""))
                                     {// ako je null
 
-                                        using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                                        using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                                         {
                                             cn20.Open();
                                             string sql20 = "update " + baza1 + " set " + danxx + "= '" + ozn1 + "' where  mjesec=" + mjes1 + " and godina=" + god1 + " and radnikid= " + id1 + " and firma='" + firma1 + "'";
@@ -451,7 +451,7 @@ namespace Izostanci2
                                                 }
                                                 else
                                                 {
-                                                    using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                                                    using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                                                     {
                                                         ozn1 = ozn1.Replace("0e;", "");
 
@@ -513,10 +513,10 @@ namespace Izostanci2
                 // 2. korak oni koji nisu upisani u prvom koraku, i imaju više od 90 minuta
 
                 sql1 = "select r.neradi,p.firma,p.radnikid,p.ime," + danxx + ",v.dosao,v.otisao,v.ukupno_minuta,v.smjena,a.fixnaisplata,a.mt from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma " +
-                "left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika left join rfind.dbo.pregledvremena v on v.idradnika = a.id and v.Datum = '" + djucer + "' where mjesec = " + mjes1 + " and godina = " + god1 + " and v.ukupno_minuta > 90 and " + danxx + " is null  order by ime";
-                //                "left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika left join rfind.dbo.pregledvremena v on v.idradnika = a.id and v.Datum = '" + djucer + "' where mjesec = " + mjes1 + " and godina = " + god1 + " and v.ukupno_minuta > 465 and a.mt in (700,701,712, 716,704,710,702,713) and " + danxx + " is null  order by ime";
+                "left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika left join FX_RFIND.dbo.pregledvremena v on v.idradnika = a.id and v.Datum = '" + djucer + "' where mjesec = " + mjes1 + " and godina = " + god1 + " and v.ukupno_minuta > 90 and " + danxx + " is null  order by ime";
+                //                "left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika left join FX_RFIND.dbo.pregledvremena v on v.idradnika = a.id and v.Datum = '" + djucer + "' where mjesec = " + mjes1 + " and godina = " + god1 + " and v.ukupno_minuta > 465 and a.mt in (700,701,712, 716,704,710,702,713) and " + danxx + " is null  order by ime";
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -641,7 +641,7 @@ namespace Izostanci2
                                     ozn1 = o1 + ozn1;
                                 }
 
-                                using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                                using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                                 {
                                     cn20.Open();
                                     if (id1 == "1465")
@@ -668,11 +668,11 @@ namespace Izostanci2
                 // 3.korak -- plansatirada 2 korak, oni koji upisano prethodno ( radnici,šteleri oni koji su zaplanirani i imaju >450 minuta)
 
                 // Režija, svima koji se pojave ide 0j
-                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika left join rfind.dbo.pregledvremena v on v.IDRadnika=a.id and v.datum= '" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and r.sifrarm='Režija' and year(v.dosao)!=1900 and " + danxx + " is null order by ime ";
-                //                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika left join rfind.dbo.pregledvremena v on v.IDRadnika=a.id and v.datum= '" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and ( r.sifrarm='Režija' or (mt=707 ) ) and v.radnomjesto not in ('B.O.','G.O.')  and " + danxx + " is null order by ime ";
-                //sql1 = "select r.neradi,p.firma,p.*,dan17,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.mt in (700,701,704,713,712, 716) and  a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null order by ime ";
+                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika left join FX_RFIND.dbo.pregledvremena v on v.IDRadnika=a.id and v.datum= '" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and r.sifrarm='Režija' and year(v.dosao)!=1900 and " + danxx + " is null order by ime ";
+                //                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika left join FX_RFIND.dbo.pregledvremena v on v.IDRadnika=a.id and v.datum= '" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and ( r.sifrarm='Režija' or (mt=707 ) ) and v.radnomjesto not in ('B.O.','G.O.')  and " + danxx + " is null order by ime ";
+                //sql1 = "select r.neradi,p.firma,p.*,dan17,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.mt in (700,701,704,713,712, 716) and  a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null order by ime ";
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -697,7 +697,7 @@ namespace Izostanci2
                                     continue;
                                 }
 
-                                using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                                using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                                 {
                                     cn20.Open();
                                     string sql20 = "update " + baza1 + " set " + danxx + "= '" + ozn1 + "' where  mjesec=" + mjes1 + " and godina=" + god1 + " and radnikid= " + id1 + " and firma='" + firma1 + "'";
@@ -715,10 +715,10 @@ namespace Izostanci2
 
 
                 // puni 0e
-                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika left join pregledvremena v on v.idradnika=a.id and v.datum='" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null and charindex('4. SMJENA',v.radnomjesto)=0  order by ime ";
-                //sql1 = "select r.neradi,p.firma,p.*,dan17,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join rfind.dbo.radnici_ a on a.id_radnika = r.id_radnika where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.mt in (700,701,704,713,712, 716) and  a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null order by ime ";
+                sql1 = "select r.neradi,p.firma,p.*,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika left join pregledvremena v on v.idradnika=a.id and v.datum='" + djucer + "' where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null and charindex('4. SMJENA',v.radnomjesto)=0  order by ime ";
+                //sql1 = "select r.neradi,p.firma,p.*,dan17,a.neradi from " + baza1 + " p left join feroapp.dbo.radnici r on r.id_fink = p.radnikid and r.id_firme = p.Firma left join FX_RFIND.dbo.radnici_ a on a.id_radnika = r.id_radnika where a.neradi=0 and mjesec = " + mjes1 + " and godina = " + god1 + " and a.mt in (700,701,704,713,712, 716) and  a.datumzaposlenja<='" + djucer + "' and " + danxx + " is null order by ime ";
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -763,7 +763,7 @@ namespace Izostanci2
                                     continue;
                                 }
 
-                                using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                                using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                                 {
                                     cn20.Open();
                                     string sql20 = "update " + baza1 + " set " + danxx + "= '" + ozn1 + "' where  mjesec=" + mjes1 + " and godina=" + god1 + " and radnikid= " + id1 + " and firma='" + firma1 + "'";
@@ -787,7 +787,7 @@ namespace Izostanci2
                 }
                 else
                 {
-                    using (SqlConnection cn20 = new SqlConnection(connectionStringRFIND))
+                    using (SqlConnection cn20 = new SqlConnection(connectionStringFX_RFIND))
                     {
                         cn20.Open();
                         string sql20 = "update " + baza1 + " set " + danxx + "='0j' where  mjesec=" + mjes1 + " and godina=" + god1 + " and radnikid in ( 128,971,257,880) and firma=1 and " + danxx + " is null ";
@@ -808,8 +808,8 @@ namespace Izostanci2
                 // preskoči tip=3
                 if (dayofweek1 == 9999)  // za nedjelju ne puni 4.sheet 
                 {
-                    sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',3";
-                    using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                    sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',3";
+                    using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                     {
 
                         cn.Open();
@@ -981,8 +981,8 @@ namespace Izostanci2
                 }
                 //  return;
                 // ako ima upisano 0e i dosao je 
-                sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',4";
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',4";
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -1016,8 +1016,8 @@ namespace Izostanci2
                     }
                 }
                 // nezaplanirani
-                sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',5";
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',5";
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -1051,8 +1051,8 @@ namespace Izostanci2
                 }
 
                 // provjera sati
-                sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',6";
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',6";
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -1234,8 +1234,8 @@ namespace Izostanci2
                 for (int ws = 1; ws < 2; ws++)
             {                
 
-                sql1 = "rfind.dbo.izostanci '" + dat1 + "',1";
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                sql1 = "FX_RFIND.dbo.izostanci '" + dat1 + "',1";
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
                     
                     cn.Open();
@@ -1272,11 +1272,11 @@ namespace Izostanci2
 
                 }
 
-                sql1 = "rfind.dbo.izostanci2 '" + dat1 + "',1";
+                sql1 = "FX_RFIND.dbo.izostanci2 '" + dat1 + "',1";
 
                 Worksheet worksheetNP = workbook.Worksheets.Item[2] as Worksheet;
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -1302,11 +1302,11 @@ namespace Izostanci2
                     }
                 }     // end for ws<=4
 
-                sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',1";
+                sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',1";
 
                 Worksheet worksheetDUPL = workbook.Worksheets.Item[3] as Worksheet;
 
-                using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                 {
 
                     cn.Open();
@@ -1336,11 +1336,11 @@ namespace Izostanci2
 
                 if (ws == 1)   // problematične prijave
                 {
-                    sql1 = "rfind.dbo.izostanci3 '" + dat1 + "',2";
+                    sql1 = "FX_RFIND.dbo.izostanci3 '" + dat1 + "',2";
 
                     Worksheet worksheetrfid = workbook.Worksheets.Item[4] as Worksheet;
 
-                    using (SqlConnection cn = new SqlConnection(connectionStringRFIND))
+                    using (SqlConnection cn = new SqlConnection(connectionStringFX_RFIND))
                     {
 
                         cn.Open();
@@ -1381,7 +1381,7 @@ namespace Izostanci2
 
             DateTime jucer = DateTime.Now.AddDays(-1);
             
-            sql1 = "rfind.dbo.PlanZadnjiDan " + jucer.Month.ToString() + ","+ jucer.Year.ToString();
+            sql1 = "FX_RFIND.dbo.PlanZadnjiDan " + jucer.Month.ToString() + ","+ jucer.Year.ToString();
             using (SqlConnection cn = new SqlConnection(connectionString))
             {
                 cn.Open();
@@ -1425,7 +1425,7 @@ namespace Izostanci2
             client.Port = 25;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("gasparic.s@feroimpex.hr", "gasparic1");
+            client.Credentials = new System.Net.NetworkCredential("gasparic.s@feroimpex.hr", "Srecko123.");
 
             client.Host = "mail.feroimpex.hr";
             //client.Host = "mail.feroimpex.hr";
