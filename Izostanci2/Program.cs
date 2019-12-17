@@ -193,7 +193,7 @@ namespace Izostanci2
 
             DateTime jucer1 = DateTime.Now.AddDays(-1);
             //////////////////////////////////////////////////////////////
-           //jucer1 = new DateTime(2019,  10, 25 , 12, 12,0);
+           //jucer1 = new DateTime(2019,  12, 11 , 12, 12,0);
             //////////////////////////////////////////////////////////////
 
             int dayofweek1 = (int)jucer1.DayOfWeek;
@@ -1425,7 +1425,7 @@ namespace Izostanci2
             client.Port = 25;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("gasparic.s@feroimpex.hr", "Srecko123.");
+            client.Credentials = new System.Net.NetworkCredential("gasparic.s@feroimpex.hr", "Srecko123.123");
 
             client.Host = "mail.feroimpex.hr";
             //client.Host = "mail.feroimpex.hr";
